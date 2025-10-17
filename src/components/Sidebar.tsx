@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import ui from '../../ui.config';
+import Login from './Login';
 
 export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolean }) {
 
@@ -16,7 +17,14 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 
 				<div className='border-b border-solid border-[var(--divider)]' />
 			</header>
-			<div className='menuItem'>Sidebar</div>
+
+
+			<div className="sidebar-main px-4 py-4">
+
+				<div className="login-area flex flex-col align-middle justify-center items-center">
+					<Login />
+				</div>
+			</div>
 		</div>
 	);
 }
