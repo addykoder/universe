@@ -16,7 +16,7 @@ const ui = {
 
 	// asset urls
 	assets: {
-		icon: '/icon.jpg',
+		icon: '/icon.png',
 	},
 };
 

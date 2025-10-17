@@ -26,7 +26,7 @@ export default function Loader({onLoad, onStart}:{onLoad:()=>void, onStart:()=>v
 					ease: 'easeInOut',
 					times:[0,1]
 				}}
-				className={ `bg-[url('/icon.jpg')] bg-center bg-[var(--bg)] bg-contain bg-no-repeat logo w-[50%] h-[50%]` }
+				className={ `bg-[url('/icon.png')] bg-center bg-[var(--bg)] bg-contain bg-no-repeat logo w-[50%] h-[50%]` }
 			/>
 		</motion.div>
 	);
