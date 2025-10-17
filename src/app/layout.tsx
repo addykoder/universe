@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 		siteName: 'Universe',
 		title: 'Universe',
 		url: process.env.SITE_URL,
-		description: 'Simplify Attendance',
+		description: 'Where campus life connects seamlessly',
 	},
 };
 
