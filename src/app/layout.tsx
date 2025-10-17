@@ -7,7 +7,7 @@ const sans = Open_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600'
 
 // Root Metadata
 export const metadata: Metadata = {
-	title: 'Universe',
+	title: 'Uni-verse',
 	description: 'Where campus life connects seamlessly.',
 	generator: 'Next.js',
 	manifest: '/manifest.json',
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
 	openGraph: {
 		images: ui.assets.icon,
 		type: 'website',
-		siteName: 'Universe',
-		title: 'Universe',
+		siteName: 'Uni-verse',
+		title: 'Uni-verse',
 		url: process.env.SITE_URL,
 		description: 'Where campus life connects seamlessly',
 	},
