@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import ui from '../../ui.config';
+import { AuthProvider } from "@/context/AuthContext";
 
 const sans = Open_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'] });
 
@@ -48,7 +49,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang='en'>
-			<body className={`m-0 min-h-[100vh] ${sans.className}`}>{children}</body>
+			<body className={`m-0 min-h-[100vh] ${sans.className}`}>
+				<AuthProvider>
+					{children}
+				</AuthProvider>
+			</body>
 		</html>
 	);
 }
