@@ -59,7 +59,7 @@ export default function HomePage() {
 					<div className='mx-auto px-4 z-10 relative'>
 						<div className='hero flex flex-row align-middle items-center justify-center'>
 							<Image alt='universe logo' width='250' height='250' src='/icon.png' />
-							<h2 className='text-8xl font-black text-[rgb(64,154,255)]'>ni-verse</h2>
+							<h2 className='text-8xl font-black text-[rgb(64,154,255)] hidden md:block'>ni-verse</h2>
 						</div>
 						<h1 className='text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-center'>
 							Your Entire Campus, <span className='bg-gradient-to-r from-blue-400 to-teal-300 bg-clip-text text-transparent'>Connected.</span>
