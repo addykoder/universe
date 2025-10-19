@@ -2,10 +2,13 @@
 
 import { useContext, createContext, useState, useEffect, ReactNode } from 'react';
 import { onAuthStateChanged, signOut, User as FirebaseUser, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { doc, onSnapshot } from "firebase/firestore";
 import { useRouter } from 'next/navigation';
 import { ALLOWED_DOMAIN } from '@/utils/variables';
-import { Bounce, toast } from 'react-toastify';
+import { checkAndCreateUserProfile } from "@/services/userService";
+import { toast } from 'react-toastify';
+import { auth, db } from "@/lib/firebase";
+import { UserProfile } from "@/services/userService";
 
 // Define the shape of your user object
 interface User {
@@ -18,6 +21,7 @@ interface User {
 // Define the shape of the context value
 interface AuthContextType {
 	user: User | null;
+	profile: UserProfile | null;
 	loading: boolean;
 	logout: () => Promise<void>;
 	login: () => Promise<void>;
@@ -26,14 +30,10 @@ interface AuthContextType {
 // 1. Create the Context with a default value
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// 2. Create the Provider Component
-interface AuthProviderProps {
-	children: ReactNode;
-}
-
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children }: {children: ReactNode}) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [loading, setLoading] = useState(true);
+	const [profile, setProfile] = useState<UserProfile | null>(null);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -47,9 +47,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 					displayName: firebaseUser.displayName,
 					photoURL: firebaseUser.photoURL,
 				});
+
+				const userRef = doc(db, "users", firebaseUser.uid);
+        const unsubProfile = onSnapshot(userRef, (doc) => {
+          if (doc.exists()) {
+            setProfile(doc.data() as UserProfile);
+          } else {
+            setProfile(null);
+          }
+          setLoading(false);
+        });
+        return () => unsubProfile(); // Cleanup profile listener
 			} else {
 				// User is signed out
 				setUser(null);
+				setProfile(null);
 			}
 			setLoading(false);
 		});
@@ -66,6 +78,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 			// **This is the critical check**
 			if (user.email && user.email.endsWith(ALLOWED_DOMAIN)) {
+				await checkAndCreateUserProfile(user);
 				toast.success(`Successfully Logged in as ${user.displayName}!`);
 				// redirecting to dashboard after successful login
 				router.push('/dashboard');
@@ -81,12 +94,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	const logout = async () => {
 		setUser(null);
+		setProfile(null);
 		router.push('/');
 		await signOut(auth);
 		toast.info('You have been logged out.');
 	};
 
-	return <AuthContext.Provider value={{ user, loading, logout, login }}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={{ user, profile, loading, logout, login }}>{children}</AuthContext.Provider>;
 };
 
 // 3. Create a custom hook to use the context

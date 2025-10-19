@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Loader from '@/components/Loader';
 import useDisableScroll from '@/hooks/useDisableScroll';
 
+
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
 	const [animationLoaded, setAnimationLoaded] = useState(true);

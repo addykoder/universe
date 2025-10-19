@@ -5,6 +5,7 @@ import { auth } from "@/lib/firebase";
 import { ALLOWED_DOMAIN } from "@/utils/variables";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -42,6 +43,14 @@ export default function Login({small=false}: {small?: boolean}) {
 
 	const router = useRouter();
 	const { login } = useAuth();
+	const { user, loading } = useAuth();
+
+	useEffect(() => {
+		if (user) {
+			// If the user is signed in, redirect them to the dashboard.
+			router.push("/dashboard");
+		}
+	})
 
   return ( small?
 		<div className="flex flex-row align-middle items-center w-full justify-center">

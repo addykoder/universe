@@ -3,11 +3,17 @@ import Image from 'next/image';
 import ui from '../../ui.config';
 import Login from './Login';
 import { useAuth } from '@/context/AuthContext';
+import ProfileSetupModal from "./ProfileSetupModal";
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolean }) {
-	const { user, loading, logout } = useAuth();
-	console.log(loading);
-	console.log(user);
+	const { user, profile,  loading, logout } = useAuth();
+  const router = useRouter();
+	useEffect(() => {
+		if (!user) router.push('/login')
+	})
+
 
 	return (
 		<div
@@ -26,6 +32,8 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 			<div className='sidebar-main px-4 py-4'>
 
 				<div className='login-area'>
+			{/* 3. Conditionally render the modal */}
+      {/* {loading ?<div className="p-4 text-center">Loading...</div> : showModal && <ProfileSetupModal />} */}
 
 					{user ? (
 						<div className='accounts-section flex flex-row align-middle items-center justify-between'>

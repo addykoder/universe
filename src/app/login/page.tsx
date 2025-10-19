@@ -1,7 +1,5 @@
 "use client";
 
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../lib/firebase"; // Assuming your firebase config is here
 import { useRouter } from "next/navigation";
 import Login from "@/components/Login";
 
