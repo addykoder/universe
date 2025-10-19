@@ -5,6 +5,7 @@ import { onAuthStateChanged, signOut, User as FirebaseUser, GoogleAuthProvider, 
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import { ALLOWED_DOMAIN } from '@/utils/variables';
+import { Bounce, toast } from 'react-toastify';
 
 // Define the shape of your user object
 interface User {
@@ -20,7 +21,6 @@ interface AuthContextType {
 	loading: boolean;
 	logout: () => Promise<void>;
 	login: () => Promise<void>;
-
 }
 
 // 1. Create the Context with a default value
@@ -58,32 +58,32 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 		return () => unsubscribe();
 	}, []);
 
-	const login =  async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
+	const login = async () => {
+		const provider = new GoogleAuthProvider();
+		try {
+			const result = await signInWithPopup(auth, provider)
+			const user = result.user;
 
-      // **This is the critical check**
-      if (user.email && user.email.endsWith(ALLOWED_DOMAIN)) {
-        console.log("Successfully logged in:", user.email);
+			// **This is the critical check**
+			if (user.email && user.email.endsWith(ALLOWED_DOMAIN)) {
+				toast.success(`Successfully Logged in as ${user.displayName}!`);
 				// redirecting to dashboard after successful login
 				router.push('/dashboard');
-      } else {
+			} else {
 				// email not allowed, instantly log out the user
-        await auth.signOut();
-        alert(`Sorry, only emails from @${ALLOWED_DOMAIN} are allowed.`);
-      }
-    } catch (error) {
-      console.error("Error during Google signin:", error);
-    }
-  };
-
+				await auth.signOut();
+				toast.warn(`Sorry, only emails from @${ALLOWED_DOMAIN} are allowed.`);
+			}
+		} catch (error) {
+			toast.error('Some error occurred during Google SingIn');
+		}
+	};
 
 	const logout = async () => {
 		setUser(null);
 		router.push('/');
 		await signOut(auth);
+		toast.info('You have been logged out.');
 	};
 
 	return <AuthContext.Provider value={{ user, loading, logout, login }}>{children}</AuthContext.Provider>;

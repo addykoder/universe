@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import ui from '../../ui.config';
-import { AuthProvider } from "@/context/AuthContext";
+import { AuthProvider } from '@/context/AuthContext';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 const sans = Open_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'] });
 
@@ -51,6 +52,19 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 		<html lang='en'>
 			<body className={`m-0 min-h-[100vh] ${sans.className}`}>
 				<AuthProvider>
+					<ToastContainer
+						position='top-right'
+						autoClose={5000}
+						hideProgressBar={false}
+						newestOnTop={false}
+						closeOnClick={false}
+						rtl={false}
+						pauseOnFocusLoss
+						draggable
+						pauseOnHover
+						theme='dark'
+						transition={Bounce}
+					/>
 					{children}
 				</AuthProvider>
 			</body>
