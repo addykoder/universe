@@ -5,6 +5,7 @@
   --foreground: #171717;
 	--bg: black;
 	--divider: rgb(39,39,42);
+	--accent: #3a9bf8;
 }
 
 @theme inline {
@@ -25,7 +26,9 @@ body{
 	background: black; 
 	color: white;
 }
-
+*{
+	transition: all 0.2s ease-in-out;
+}
 *::-webkit-scrollbar{
 	width:3px;
 	@apply bg-zinc-900;

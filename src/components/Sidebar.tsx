@@ -29,15 +29,17 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 				<div className='border-b border-solid border-[var(--divider)]' />
 			</header>
 
-			<div className='sidebar-main px-4 py-4'>
+			<div className='sidebar-main px-4 py-4 min-h-[90vh] flex flex-col justify-between'>
 
-				<div className='login-area'>
+				<div className="sidebar_content "></div>
+
+				<div className='login-area '>
 			{/* 3. Conditionally render the modal */}
       {/* {loading ?<div className="p-4 text-center">Loading...</div> : showModal && <ProfileSetupModal />} */}
 
 					{user ? (
 						<div className='accounts-section flex flex-row align-middle items-center justify-between'>
-							<img className='image rounded-3xl' data-alt-override='false' alt='G' width='38' height='38' loading='lazy' src={user.photoURL || ''}></img>
+							<img className='image rounded-3xl hover:cursor-pointer border-3 border-[var(--accent)] hover:scale-110' data-alt-override='false' alt='G' width='38' height='38' loading='lazy' src={user.photoURL || ''}></img>
 							<button
 								onClick={logout}
 								className='px-4 py-2 text-white bg-transparent border-[var(--divider)] border-2 rounded hover:cursor-pointer hover:bg-[rgb(20,20,20)] flex flex-row gap-4'
