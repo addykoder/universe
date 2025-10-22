@@ -30,6 +30,9 @@ export default function LiveClock() {
       <p className="text-lg text-slate-400 mt-2">
         {date}, <span className='text-[var(--accent)]'>{weekday}</span>
       </p>
+			<p className="text-center font-serif italic text-slate-400 text-md mt-6 font-extralight">
+            "The best way to predict the future is to create it."
+          </p>
     </div>
   );
 }
