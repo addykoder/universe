@@ -68,7 +68,7 @@ export default function AnnouncementsPage() {
           <Megaphone className="w-8 h-8 text-blue-400" />
           Announcements
         </h1>
-        <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold text-white transition-colors shadow-lg">
+        <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold text-white transition-colors shadow-lg hover:cursor-pointer">
           Create Post
         </button>
       </div>

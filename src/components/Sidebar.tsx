@@ -4,16 +4,19 @@ import ui from '../../ui.config';
 import Login from './Login';
 import { useAuth } from '@/context/AuthContext';
 import ProfileSetupModal from './ProfileSetupModal';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Link from 'next/link';
 
 export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolean }) {
+	const pathname = usePathname();
 	const { user, logout } = useAuth();
 	const router = useRouter();
 	useEffect(() => {
 		if (!user) router.push('/login');
 	});
+	console.log(pathname);
+	
 
 	return (
 		<div
@@ -36,7 +39,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 							<li key={'dashboard'}>
 								<Link
 									href={'/dashboard/'}
-									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 bg-blue-500 hover:text-white transition-colors'
+									className={ `flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 ${pathname == '/dashboard' ? 'bg-blue-500' : ''} hover:text-white transition-colors` }
 								>
 									{/* Icon */}
 									<svg
@@ -67,7 +70,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 							<li key={'Manage'}>
 								<Link
 									href={'/dashboard/manage'}
-									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'
+									className={ `flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/manage' ? 'bg-blue-500' : ''}` }
 								>
 									{/* Icon */}
 									<svg
@@ -93,7 +96,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 							<li key={'announcements'}>
 								<Link
 									href={'/dashboard/announcements'}
-									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'
+									className={ `flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/announcements' ? 'bg-blue-500' : ''}` }
 								>
 									{/* Icon */}
 									<svg
@@ -118,7 +121,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 							<li key={'Events'}>
 								<Link
 									href={'/dashboard/events'}
-									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'
+									className={ `flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/events' ? 'bg-blue-500' : ''}` }
 								>
 									{/* Icon */}
 									<svg
@@ -149,7 +152,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 							<li key={'resource'}>
 								<Link
 									href={'/dashboard/resource-sharing'}
-									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'
+									className={ `flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/resource-sharing' ? 'bg-blue-500' : ''}` }
 								>
 									{/* Icon */}
 									<svg
@@ -176,7 +179,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 							<li key={'qna'}>
 								<Link
 									href={'/dashboard/qna'}
-									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'
+									className={ `flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/qna' ? 'bg-blue-500' : ''}` }
 								>
 									{/* Icon */}
 									<svg
@@ -203,7 +206,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 							<li key={'BuySell'}>
 								<Link
 									href={'/dashboard/buy-sell'}
-									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'
+									className={ `flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/buy-sell' ? 'bg-blue-500' : ''}` }
 								>
 									{/* Icon */}
 									<svg
@@ -234,9 +237,9 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 					{/* {loading ?<div className="p-4 text-center">Loading...</div> : showModal && <ProfileSetupModal />} */}
 
 					{user ? (
-						<div className='accounts-section flex flex-row align-middle items-center justify-between gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'>
+						<div className={ `accounts-section flex flex-row align-middle items-center justify-between gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/profile' ? 'bg-blue-500' : ''}` }>
 							<div onClick={()=> router.push('/dashboard/profile')} className='left flex flex-row gap-2 hover:cursor-pointer'>
-								<img
+								<Image
 									
 									className='image rounded-3xl'
 									data-alt-override='false'
@@ -244,8 +247,8 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 									width='38'
 									height='38'
 									loading='lazy'
-									src={user.photoURL || ''}
-								></img>
+									src={user.photoURL || `https://avatar.vercel.sh/${user.email}`}
+								></Image>
 								<div className='content'>
 									<div className='name text-white text-sm'>{user.displayName?.split(' ')[0]}</div>
 									<div className='mail text-white opacity-40 text-sm'>{user.email?.slice(0,9)}</div>
