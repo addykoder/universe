@@ -237,7 +237,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 					{/* {loading ?<div className="p-4 text-center">Loading...</div> : showModal && <ProfileSetupModal />} */}
 
 					{user ? (
-						<div className={ `accounts-section flex flex-row align-middle items-center justify-between gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/profile' ? 'bg-blue-500' : ''}` }>
+						<div className={ `accounts-section flex flex-row align-middle items-center justify-between gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors ${pathname == '/dashboard/profile' ? 'bg-gray-800' : ''}` }>
 							<div onClick={()=> router.push('/dashboard/profile')} className='left flex flex-row gap-2 hover:cursor-pointer'>
 								<Image
 									

@@ -60,7 +60,7 @@ const MiniCalendar = () => {
 };
 
 // --- Reusable Event Card Component ---
-const EventCard = ({ event }: { event: any }) => (
+const EventCard = ({ event }: { event: {month:string, day:number, category:string, title:string, time:string, location:string} }) => (
   <div className="bg-slate-900 border border-slate-800 rounded-xl shadow-lg p-6 transition-all hover:border-slate-700 hover:bg-black hover:cursor-pointer">
     <div className="flex gap-4">
       {/* Date Block */}
