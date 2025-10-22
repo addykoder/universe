@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/a/**', // This pattern allows all Google user profile images
       },
+      {
+        protocol: 'https',
+        hostname: 'www.gstatic.com',
+        port: '',
+        pathname: '/**', // This pattern allows all Google user profile images
+      },
     ],
   },
 };
