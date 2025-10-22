@@ -3,7 +3,7 @@ import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import ui from '../../ui.config';
 import { AuthProvider } from '@/context/AuthContext';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { Bounce, ToastContainer, } from 'react-toastify';
 
 const sans = Open_Sans({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'] });
 

@@ -4,6 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Mail, BookUser, CalendarDays, Edit, Loader } from "lucide-react";
+import Image from "next/image";
 
 export default function ProfilePage() {
   const { user, profile, loading } = useAuth();
@@ -49,7 +50,9 @@ export default function ProfilePage() {
 
         {/* Profile Header */}
         <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-          <img
+          <Image
+					width={28}
+					height={28}
             src={user.photoURL || `https://avatar.vercel.sh/${user.email}`}
             alt={user.displayName || "User"}
             className="w-28 h-28 rounded-full border-4 border-[var(--accent)] object-cover"

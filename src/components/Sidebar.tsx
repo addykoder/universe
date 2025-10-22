@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 
 export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolean }) {
-	const { user, profile, loading, logout } = useAuth();
+	const { user, logout } = useAuth();
 	const router = useRouter();
 	useEffect(() => {
 		if (!user) router.push('/login');

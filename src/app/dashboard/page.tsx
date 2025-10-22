@@ -3,8 +3,8 @@
 import ProfileSetupModal from "@/components/ProfileSetupModal";
 import { useAuth } from "@/context/AuthContext";
 
-export default function app() {
-	const { user, profile,  loading, logout } = useAuth();
+export default function App() {
+	const { user, profile,  loading, } = useAuth();
   const showModal = user && profile && !profile.profileComplete;
 	return (
 		<>

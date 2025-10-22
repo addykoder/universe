@@ -1,5 +1,5 @@
 import { db } from "@/lib/firebase";
-import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, serverTimestamp, Timestamp, FieldValue } from "firebase/firestore";
 import { User as FirebaseUser } from "firebase/auth";
 
 // structure of our user profile
@@ -11,7 +11,7 @@ export interface UserProfile {
   department?: string; // Optional fields to be filled in later
   year?: number;       // Optional fields to be filled in later
   profileComplete: boolean;
-  createdAt: any;
+  createdAt: FieldValue;
 }
 
 /**

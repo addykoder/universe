@@ -1,11 +1,9 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
-import { auth } from "@/lib/firebase";
-import { ALLOWED_DOMAIN } from "@/utils/variables";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -43,7 +41,7 @@ export default function Login({small=false}: {small?: boolean}) {
 
 	const router = useRouter();
 	const { login } = useAuth();
-	const { user, loading } = useAuth();
+	const { user, } = useAuth();
 
 	useEffect(() => {
 		if (user) {
@@ -58,7 +56,7 @@ export default function Login({small=false}: {small?: boolean}) {
         onClick={login}
         className="px-4 py-2 text-white bg-transparent border-[var(--divider)] border-2 rounded hover:cursor-pointer hover:bg-[rgb(20,20,20)] flex flex-row gap-4 w-max m-auto"
       >
-				<img className="image" data-alt-override="false" alt="G" width="22" height="22" loading="lazy" src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s48-fcrop64=1,00000000ffffffff-rw"></img>
+				<Image className="image" data-alt-override="false" alt="G" width="22" height="22" loading="lazy" src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s48-fcrop64=1,00000000ffffffff-rw"></Image>
         Sign In
       </button>
 </div>

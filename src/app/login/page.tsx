@@ -1,16 +1,7 @@
 "use client";
-
-import { useRouter } from "next/navigation";
 import Login from "@/components/Login";
 
-// Replace with your college's actual email domain
-
-// A simple Google Icon component
-
-
 export default function SignInPage() {
-  const router = useRouter();
-
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-900 text-white">
