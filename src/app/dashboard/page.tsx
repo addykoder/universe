@@ -5,6 +5,9 @@ import { useAuth } from "@/context/AuthContext";
 import LiveClock from "@/components/LiveClock";
 import { Megaphone, Calendar, BookUser, BarChart, Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
+import QnaWidget from "@/components/QnaWidget";
+import BarterWidget from "@/components/BarterWidget";
+import PollWidget from "@/components/PollWidget";
 
 // Placeholder Card component if you don't have one
   var Card = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
@@ -45,12 +48,23 @@ export default function DashboardPage() {
     { title: "CodeRave Tech Talk", subtitle: "Tomorrow at 7:00 PM" },
   ];
 
+	const qnaItems = [
+    { title: "What's the best language for AI?", user: "Aditya" },
+    { title: "Where can I find last year's exam papers?", user: "Jane" },
+    { title: "Best place for coffee near campus?", user: "Alex" },
+  ];
+
+  const barterItems = [
+    { title: "Selling: 'React Deep Dive' textbook", user: "Sam" },
+    { title: "WTB: Scientific Calculator", user: "Chris" },
+  ];
+
   const profileCompletion = profile.profileComplete ? 100 : 50; // Simple logic for demo
 
   return (
 		
 			
-    <div className="text-white p-12">
+    <div className="text-white p-6 md:p-12">
 
       {loading ?<div className="p-4 text-center">Loading...</div> : showModal && <ProfileSetupModal />}
       {/* 1. Welcome Banner */}
@@ -70,6 +84,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Recent Announcements Card */}
             <Card className="hover:cursor-pointer">
+							<div onClick={() => {router.push('/dashboard/announcements')}}>
               <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <Megaphone className="w-5 h-5 text-blue-400" />
                 Recent Announcements
@@ -79,10 +94,12 @@ export default function DashboardPage() {
                   <ListItem key={i} title={item.title} subtitle={item.subtitle} />
                 ))}
               </div>
+					</div>
             </Card>
 
             {/* Upcoming Events Card */}
             <Card className="hover:cursor-pointer">
+							<div onClick={() => {router.push('/dashboard/events')}}>
               <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-green-400" />
                 Upcoming Events
@@ -92,7 +109,11 @@ export default function DashboardPage() {
                   <ListItem key={i} title={item.title} subtitle={item.subtitle} />
                 ))}
               </div>
-            </Card>
+              </div>
+						</Card>
+						<QnaWidget items={qnaItems} />
+
+            <BarterWidget items={barterItems} />
           </div>
         </div>
 
@@ -126,7 +147,7 @@ export default function DashboardPage() {
             )}
 </div>
           </Card>
-
+						<PollWidget />
         </div>
       </div>
     </div>
