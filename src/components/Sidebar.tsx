@@ -90,9 +90,9 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 									<span>Manage</span>
 								</Link>
 							</li>
-							<li key={'notifications'}>
+							<li key={'announcements'}>
 								<Link
-									href={'/dashboard/notifications'}
+									href={'/dashboard/announcements'}
 									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'
 								>
 									{/* Icon */}
@@ -112,7 +112,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 									</svg>
 									{/* <item.icon className="w-5 h-5" /> */}
 									{/* Label */}
-									<span>Notifications</span>
+									<span>Announcements</span>
 								</Link>
 							</li>
 							<li key={'Events'}>
@@ -235,10 +235,10 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 
 					{user ? (
 						<div className='accounts-section flex flex-row align-middle items-center justify-between gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'>
-							<div className='left flex flex-row gap-2'>
+							<div onClick={()=> router.push('/dashboard/profile')} className='left flex flex-row gap-2 hover:cursor-pointer'>
 								<img
-									onClick={()=> router.push('/dashboard/profile')}
-									className='image rounded-3xl hover:cursor-pointer hover:scale-110'
+									
+									className='image rounded-3xl'
 									data-alt-override='false'
 									alt='G'
 									width='38'
