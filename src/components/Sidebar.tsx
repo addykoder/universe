@@ -36,7 +36,7 @@ export default function Sidebar({ sidebarCollapsed }: { sidebarCollapsed: boolea
 							<li key={'dashboard'}>
 								<Link
 									href={'/dashboard/'}
-									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 hover:text-white transition-colors'
+									className='flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-900 bg-blue-500 hover:text-white transition-colors'
 								>
 									{/* Icon */}
 									<svg

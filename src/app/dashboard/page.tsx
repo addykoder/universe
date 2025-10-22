@@ -10,7 +10,7 @@ import BarterWidget from "@/components/BarterWidget";
 import PollWidget from "@/components/PollWidget";
 
 // Placeholder Card component if you don't have one
-  var Card = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+  const Card = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
     <div className={`bg-slate-900 border hover:bg-black border-slate-800 rounded-xl shadow-lg p-6 ${className}`}>
       {children}
     </div>
@@ -72,7 +72,7 @@ export default function DashboardPage() {
         <span className="text-3xl">👋</span>
         <div>
           <h1 className="text-2xl font-bold">Hi, {user.displayName?.split(" ")[0]}!</h1>
-          <p className="text-slate-400">It's nice to see you in the Dashboard.</p>
+					<p className="text-slate-400">It&apos;s nice to see you in the Dashboard.</p>
         </div>
       </div>
 
