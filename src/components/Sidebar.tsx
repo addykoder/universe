@@ -3,7 +3,6 @@ import Image from 'next/image';
 import ui from '../../ui.config';
 import Login from './Login';
 import { useAuth } from '@/context/AuthContext';
-import ProfileSetupModal from './ProfileSetupModal';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Link from 'next/link';
